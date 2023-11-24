@@ -1,12 +1,22 @@
 const extendHex = (shortHex) => {
   // write your code here
-	let ans = "#";
-	for( let i of shortHex){
-		let k = i + i;
-		ans = ans + k;
-	}
+	shortHex = shortHex.replace("#", "");
+
+  // Make sure the input is a valid short hex code
+  if (shortHex.length !== 3 || !/^[0-9a-fA-F]{3}$/.test(shortHex)) {
+    console.error("Invalid short hex code. Please provide a valid short hex code with 3 characters.");
+    return null;
+  }
+
 	
-	return ans;
+  // Extend the short hex code to the full hex code
+  const fullHex = shortHex
+    .split("")
+    .map(char => char.repeat(2))
+    .join("");
+
+  // Add the '#' symbol and return the full hex code
+  return `#${fullHex}`;
 	
 };
 
